@@ -6,7 +6,7 @@ app.use(express.json());
 app.use(cors());
 let PORT = 8080;
 app.listen(PORT, `Listening on port ${PORT}`);
-app.get("");
-app.get("");
-app.post("");
-app.post("");
+app.get("/", (req, res) => {}); //login page
+app.get("/register", (req, res) => {}); //registration page (pulling to prevent duplicate usernames)
+app.post("/register", (req, res) => {}); //registration page
+app.post("/add-new-task", (req, res) => {}); //profile page (username in body, alongside other info)
