@@ -10,3 +10,4 @@ app.get("/", (req, res) => {}); //login page
 app.get("/register", (req, res) => {}); //registration page (pulling to prevent duplicate usernames)
 app.post("/register", (req, res) => {}); //registration page
 app.post("/add-new-task", (req, res) => {}); //profile page (username in body, alongside other info)
+app.get("/profile", (req, res) => {}); //profile pulling from db (hopefully all on same page if not add more get requests)
