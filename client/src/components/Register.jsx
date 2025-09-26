@@ -8,7 +8,7 @@ export default function Register() {
   let res;
   async function handleRegister() {
     if (usernameToTry != "") {
-      let response = await fetch("http://localhost:8080/register", {
+      let response = await fetch(`${import.meta.env}/register`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usernameToTry: usernameToTry }),

@@ -13,7 +13,7 @@ export default function Profile() {
   useEffect(() => {
     async function getProfileData() {
       if (userID != "" || userID != undefined) {
-        const response = await fetch(`http://localhost:8080/profile/`, {
+        const response = await fetch(`${import.meta.env}/profile/`, {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userID: userID }),

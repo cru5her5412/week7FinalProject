@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import Profile from "./components/Profile.jsx";
+import SpecificTask from "./components/SpecificTask.jsx";
+import AddTask from "./components/AddTask.jsx";
 export default function App() {
   return (
     <>
