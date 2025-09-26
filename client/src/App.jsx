@@ -13,6 +13,7 @@ export default function App() {
           <Route path="/profile/:username/todo" element={<Register />} />
           <Route path="/profile/:username/doing" element={<Register />} />
           <Route path="/profile/:username/done" element={<Register />} />
+          <Route path="/profile/:username/:taskName" element={<Register />} />
         </Route>
       </Router>
     </>
