@@ -13,11 +13,14 @@ export default function Profile() {
   useEffect(() => {
     async function getProfileData() {
       if (userID != "" || userID != undefined) {
-        const response = await fetch(`${import.meta.env}/profile/`, {
-          method: "post",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ userID: userID }),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/profile/`,
+          {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userID: userID }),
+          }
+        );
         let data = await response.json();
         setUserData(data[0]);
       }

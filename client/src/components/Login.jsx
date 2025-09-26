@@ -22,7 +22,7 @@ export default function Login() {
   }
 
   async function handleLogin() {
-    let response = await fetch(`${import.meta.env}/`, {
+    let response = await fetch(`${import.meta.env.VITE_SERVER_URL}/`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username }),
@@ -38,7 +38,6 @@ export default function Login() {
       setUsername("");
     }
   }
-  console.log(import.meta.env.VITE_SERVER_URL);
   return (
     <div>
       <label htmlFor="username">

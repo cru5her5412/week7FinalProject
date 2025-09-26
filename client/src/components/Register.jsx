@@ -8,11 +8,14 @@ export default function Register() {
   let res;
   async function handleRegister() {
     if (usernameToTry != "") {
-      let response = await fetch(`${import.meta.env}/register`, {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ usernameToTry: usernameToTry }),
-      });
+      let response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/register`,
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ usernameToTry: usernameToTry }),
+        }
+      );
       res = await response.json();
       //   setShowRegisterModal(true);
       if (res != "User registered") {
