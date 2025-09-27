@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams, useSearchParams } from "react-router";
 
 export default function Profile() {
+  let navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const filter = searchParams.get("filter");
   const { username } = useParams();
   const [currUsername] = useState(username);
   const [userData, setUserData] = useState([]);
@@ -26,6 +29,8 @@ export default function Profile() {
       }
     }
     getProfileData();
+    let profileDataInterval = setInterval(getProfileData, 2000);
+    return () => clearInterval(profileDataInterval);
   }, [userID]);
   let userDataSorted = [];
   if (userData != "" && userData != undefined) {
@@ -34,10 +39,13 @@ export default function Profile() {
       tempArray.push(userData.task_name[i]);
       tempArray.push(userData.task_state[i]);
       tempArray.push(userData.task_desc[i]);
-      userDataSorted.push(tempArray);
+      if (filter != "" && userData.task_state[i] == filter) {
+        userDataSorted.push(tempArray);
+      } else if (!filter) {
+        userDataSorted.push(tempArray);
+      }
     }
   }
-
   return (
     <>
       <h1>Welcome {currUsername}</h1>
@@ -46,6 +54,9 @@ export default function Profile() {
             task.map((data, index) => <p key={`task${index}Name`}>{data}</p>)
           )
         : null}
+      <button onClick={() => navigate(`/profile/${username}/add-task`)}>
+        Add New Task
+      </button>
     </>
   );
 }

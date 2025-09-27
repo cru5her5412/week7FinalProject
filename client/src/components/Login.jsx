@@ -17,9 +17,6 @@ export default function Login() {
       navigate(`/profile/${username}`);
     }
   });
-  if (username != "" && userID != "") {
-    navigate(`/profile/${username}`);
-  }
 
   async function handleLogin() {
     let response = await fetch(`${import.meta.env.VITE_SERVER_URL}/`, {
@@ -46,6 +43,7 @@ export default function Login() {
           name="username"
           value={username}
           onChange={() => setUsername(event.target.value)}
+          required
         />
       </label>
       <button onClick={handleLogin}>Login</button>

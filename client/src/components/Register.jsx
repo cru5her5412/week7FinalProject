@@ -33,6 +33,7 @@ export default function Register() {
         type="usernameToTry"
         value={usernameToTry}
         onChange={() => setUsernameToTry(event.target.value)}
+        required
       />
       <button onClick={handleRegister}>Register</button>
       {/* <Modal

@@ -57,20 +57,21 @@ app.post("/register", async (req, res) => {
   //   }
 }); //registration page (adding new user) (expects body with usernameToTry)
 app.post("/add-new-task", async (req, res) => {
-  try {
-    let body = req.body;
-    let userID = body.newTask.userID;
-    let taskName = body.newTask.taskName;
-    let taskState = body.newTask.taskState;
-    let taskDesc = body.newTask.taskDesc;
-    db.query(
-      `INSERT INTO tasks (user_id,task_name,task_state,task_desc) VALUES ($1,$2,$3,$4)`,
-      [userID, taskName, taskState, taskDesc]
-    );
-    res.json("Task added");
-  } catch {
-    console.error(`task creation failed`);
-  }
+  //   try {
+  let body = req.body;
+  console.log(body);
+  let userID = body.newTask.userID;
+  let taskName = body.newTask.taskName;
+  let taskState = body.newTask.taskState;
+  let taskDesc = body.newTask.taskDesc;
+  db.query(
+    `INSERT INTO tasks (user_id,task_name,task_state,task_desc) VALUES ($1,$2,$3,$4)`,
+    [userID, taskName, taskState, taskDesc]
+  );
+  res.json("Task added");
+  //   } catch {
+  //     console.error(`task creation failed`);
+  //   }
 }); //profile page (username in body, alongside other info)(expecting object in body newTask{userid,taskName,taskState,taskDesc})
 app.post("/profile", async (req, res) => {
   let body = req.body;
