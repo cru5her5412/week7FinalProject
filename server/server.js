@@ -1,5 +1,5 @@
 import { db } from "./dbConnection.js";
-import express from "express";
+import express, { response } from "express";
 import cors from "cors";
 const app = express();
 app.use(express.json());
@@ -105,3 +105,8 @@ app.post("/profile/specific-task", async (req, res) => {
   };
   res.json(taskToSend);
 }); //profile pulling from db (expects userID && taskNo)
+app.get("/users", async (req, res) => {
+  let response = await db.query(`SELECT username FROM users`);
+  let data = response.rows;
+  res.json(data);
+});

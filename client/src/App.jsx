@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 import AddTask from "./components/AddTask/AddTask";
+import ListUsers from "./components/ListUsers/ListUsers";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import Register from "./components/Register/Register";
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/profile/:username" element={<Profile />} />
         <Route path="/profile/:username/add-task" element={<AddTask />} />
         <Route path="/profile/:username/:taskNo" element={<SpecificTask />} />
+        <Route path="/users" element={<ListUsers />} />
       </Routes>
     </div>
   );
