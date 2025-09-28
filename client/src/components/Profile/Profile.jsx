@@ -13,6 +13,7 @@ export default function Profile() {
     const saved = localStorage.getItem("userID");
     return saved || "";
   });
+
   useEffect(() => {
     async function getProfileData() {
       if (userID != "" || userID != undefined) {
@@ -25,20 +26,28 @@ export default function Profile() {
           }
         );
         let data = await response.json();
-        setUserData(data[0]);
+        let temp = data[0];
+        let tempArray = [];
+        for (let i = 0; i < temp.task_name.length; i++) {
+          tempArray.push(i);
+        }
+        temp.task_id = tempArray;
+        setUserData(temp);
       }
     }
     getProfileData();
     let profileDataInterval = setInterval(getProfileData, 2000);
     return () => clearInterval(profileDataInterval);
-  }, [userID]);
+  }, [userID, userData]);
   let userDataSorted = [];
+
   function sortDataByFilter(filter, outputArray) {
     for (let i = 0; i < userData.task_name.length; i++) {
       let tempArray = [];
       tempArray.push(userData.task_name[i]);
       tempArray.push(userData.task_state[i]);
       tempArray.push(userData.task_desc[i]);
+      tempArray.push(userData.task_id[i]);
       if (filter != "" && userData.task_state[i] == filter) {
         outputArray.push(tempArray);
       } else if (!filter) {
@@ -72,13 +81,16 @@ export default function Profile() {
                   key={`taskNo${i}`}
                   id={`taskNo${i}`}
                   className={`${userDataTodo[i][1]}State individualTask`}
+                  onClick={() =>
+                    navigate(`/profile/${username}/${userDataTodo[i][3]}`)
+                  }
                 >
                   {task.map((data, index) => (
                     <p
                       key={`task${index}`}
                       className={`partOfTask partNo${index}`}
                     >
-                      {data}
+                      {index != 3 ? data : null}
                     </p>
                   ))}
                 </div>
@@ -90,16 +102,19 @@ export default function Profile() {
           {userData != "" && userData != undefined
             ? userDataDoing.map((task, i) => (
                 <div
-                  key={`taskNo${i}`}
-                  id={`taskNo${i}`}
+                  key={`taskNo${i + userDataTodo.length}`}
+                  id={`taskNo${i + userDataTodo.length}`}
                   className={`${userDataDoing[i][1]}State individualTask`}
+                  onClick={() =>
+                    navigate(`/profile/${username}/${userDataTodo[i][3]}`)
+                  }
                 >
                   {task.map((data, index) => (
                     <p
                       key={`task${index}`}
                       className={`partOfTask partNo${index}`}
                     >
-                      {data}
+                      {index != 3 ? data : null}
                     </p>
                   ))}
                 </div>
@@ -111,23 +126,30 @@ export default function Profile() {
           {userData != "" && userData != undefined
             ? userDataDone.map((task, i) => (
                 <div
-                  key={`taskNo${i}`}
-                  id={`taskNo${i}`}
+                  key={`taskDoneNo${
+                    i + userDataTodo.length + userDataDoing.length
+                  }`}
+                  id={`taskDoneNo${
+                    i + userDataTodo.length + userDataDoing.length
+                  }`}
                   className={`${userDataDone[i][1]}State individualTask`}
+                  onClick={() =>
+                    navigate(`/profile/${username}/${userDataTodo[i][3]}`)
+                  }
                 >
                   {task.map((data, index) => (
                     <p
                       key={`task${index}`}
                       className={`partOfTask partNo${index}`}
                     >
-                      {data}
+                      {index != 3 ? data : null}
                     </p>
                   ))}
                 </div>
               ))
             : null}
         </section>
-        {/*Takes each task, and puts all its data into individual divs. current method is bad, but i couldnt get a function to work here */}
+        {/*Takes each task, and puts all its data into individual divs. current method is bad, but i couldnt get a function to work here (realised too late that it should be a component (heck)) */}
       </section>
       <section className="profileButtons">
         <button
