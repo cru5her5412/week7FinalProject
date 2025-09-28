@@ -1,4 +1,6 @@
-# week7FinalProject
+## week7FinalProject
+
+# System to store tasks marked as either todo, doing or done(register with a unique username, then add tasks)
 
 Required
 
@@ -15,4 +17,4 @@ Required
 - What errors or bugs did you encounter while completing your assignment? How did you solve them?
   lots of mismatches between server and client for what they were expecting
 - What went really well and what could have gone better?
-  styling pages was easier than I expected, likely because the pages were quite simple, coding went ok, but I think planning was my main issue. I feel I would've benefitted from something like trello to allow me to keep track of what I was working on (ironic considering the site I'm making)
+  styling pages was easier than I expected, likely because the pages were quite simple, coding went ok, but I think planning was my main issue. I feel I would've benefitted from something like trello to allow me to keep track of what I was working on (ironic considering the site I'm making) (this also meant I didnt get to do anywhere near as much testing as I would've like to)
