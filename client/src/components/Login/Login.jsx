@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-
+import "./Login.css";
 export default function Login() {
   let navigate = useNavigate();
   const [username, setUsername] = useState(() => {
@@ -36,18 +36,24 @@ export default function Login() {
     }
   }
   return (
-    <div>
-      <label htmlFor="username">
+    <div id="loginContainer">
+      <label className="usernameLabel" htmlFor="username">
         Username:
-        <input
-          name="username"
-          value={username}
-          onChange={() => setUsername(event.target.value)}
-          required
-        />
       </label>
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={() => navigate("/register")}>Register</button>
+      <input
+        className="loginPart"
+        name="username"
+        value={username}
+        onChange={() => setUsername(event.target.value)}
+        required
+      />
+
+      <button className="loginPart" onClick={handleLogin}>
+        Login
+      </button>
+      <button className="loginPart" onClick={() => navigate("/register")}>
+        Register
+      </button>
     </div>
   );
 }

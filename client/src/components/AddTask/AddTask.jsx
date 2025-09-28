@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
+import "./AddTask.css";
 export default function AddTask() {
   let navigate = useNavigate();
   const [userID] = useState(() => {
@@ -26,7 +26,6 @@ export default function AddTask() {
     const form = event.target;
     let formData = new FormData(form);
     let formInfo = Object.fromEntries(formData);
-    console.log(formInfo);
     let response = await fetch(
       `${import.meta.env.VITE_SERVER_URL}/add-new-task`,
       {
@@ -44,21 +43,36 @@ export default function AddTask() {
     );
     res = await response.json();
   }
+  if (res == "Task added") {
+    setTaskDesc("");
+    setTaskName("");
+    setTaskState("");
+  }
   return (
     <div>
-      <button onClick={() => navigate(`/profile/${username}`)}>Back</button>
+      <button
+        className="backButton"
+        onClick={() => navigate(`/profile/${username}`)}
+      >
+        Back
+      </button>
       <form onSubmit={submitForm}>
-        <h1>Add Task</h1>
-        <label htmlFor="taskName">Task Name</label>
+        <label className="newTaskLabel" htmlFor="taskName">
+          Task Name
+        </label>
         <input
+          className="newTaskPart"
           type="text"
           name="taskName"
           value={taskName}
           onChange={() => setTaskName(event.target.value)}
           required
         />
-        <label htmlFor="taskState">Task State</label>
+        <label className="newTaskLabel" htmlFor="taskState">
+          Task State
+        </label>
         <select
+          className="newTaskPart"
           type="text"
           name="taskState"
           onChange={() => {
@@ -72,8 +86,11 @@ export default function AddTask() {
           <option value="doing">Doing</option>
           <option value="done">Done</option>
         </select>
-        <label htmlFor="taskDesc">Task Description</label>
+        <label className="newTaskLabel" htmlFor="taskDesc">
+          Task Description
+        </label>
         <input
+          className="newTaskPart"
           type="text"
           name="taskDesc"
           value={taskDesc}
@@ -81,7 +98,9 @@ export default function AddTask() {
           required
         />
 
-        <button type="submit">Add task</button>
+        <button className="newTaskPart submitButton" type="submit">
+          Add task
+        </button>
       </form>
       {res != "" ? <p>{res}</p> : null}
     </div>

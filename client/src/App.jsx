@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router";
-import Login from "./components/Login.jsx";
-import Register from "./components/Register.jsx";
-import Profile from "./components/Profile.jsx";
-import SpecificTask from "./components/SpecificTask.jsx";
-import AddTask from "./components/AddTask.jsx";
+import AddTask from "./components/AddTask/AddTask";
+import Login from "./components/Login/Login";
+import Profile from "./components/Profile/Profile";
+import Register from "./components/Register/Register";
+import SpecificTask from "./components/SpecificTask/SpecificTask";
+import "./App.css";
 export default function App() {
   return (
-    <>
-      <h1>App</h1>
+    <div id={"blueBackground"}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -15,6 +15,6 @@ export default function App() {
         <Route path="/profile/:username/add-task" element={<AddTask />} />
         <Route path="/profile/:username/:taskNo" element={<SpecificTask />} />
       </Routes>
-    </>
+    </div>
   );
 }

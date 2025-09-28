@@ -1,0 +1,77 @@
+.todoState {
+  background-color: rgb(255, 54, 54);
+  border: white solid 2px;
+}
+.doingState {
+  background-color: rgb(253, 253, 54);
+  border: white solid 2px;
+}
+.doneState {
+  background-color: rgb(54, 199, 54);
+  border: white solid 2px;
+}
+#tasks {
+  display: flex;
+  align-content: space-between;
+  background-color: rgb(34, 34, 34);
+  margin: 3vh 5vw;
+  margin-bottom: 0;
+  width: 86vw;
+  height: 76vh;
+}
+.taskType {
+  margin: 1vh 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 26vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: black solid 1px;
+}
+.partOfTask {
+  padding: 2px 8px;
+  margin: 0;
+}
+.individualTask {
+  margin: 1vh 1vw;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profileButtons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 86vw;
+  height: 10vh;
+  margin: 0 5vw;
+}
+.profileButton {
+  padding: 5px;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  height: fit-content;
+  margin: 0;
+}
+.partNo0 {
+  font-size: 2rem;
+  /*task name*/
+}
+.partNo1 {
+  /*task state*/
+  font-size: 1.2rem;
+}
+.partNo2 {
+  /*task desc*/
+  font-size: 1rem;
+}
+h2 {
+  color: white;
+}
+h1 {
+  display: flex;
+  justify-content: center;
+  padding-top: 2vh;
+}

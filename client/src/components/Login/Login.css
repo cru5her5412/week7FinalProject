@@ -1,0 +1,24 @@
+.loginPart {
+  padding: 5px;
+  background-color: rgb(34, 34, 34);
+  color: white;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+}
+.usernameLabel {
+  padding-top: 20vh;
+  font-size: 3em;
+  display: flex;
+  justify-self: center;
+}
+input {
+  width: 50vw;
+}
+button {
+  width: 30vw;
+}
+input,
+button {
+  margin: 5vh;
+}

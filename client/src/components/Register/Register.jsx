@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Navigate, useNavigate } from "react-router";
+import "./Register.css";
 export default function Register() {
   let navigate = useNavigate();
   const [usernameToTry, setUsernameToTry] = useState("");
@@ -27,15 +28,19 @@ export default function Register() {
   }
   return (
     <div>
-      <h1>Register</h1>
-      <label htmlFor="usernameToTry">Username</label>
+      <label className="usernameLabel" htmlFor="usernameToTry">
+        Username
+      </label>
       <input
+        className="registerPart"
         type="usernameToTry"
         value={usernameToTry}
         onChange={() => setUsernameToTry(event.target.value)}
         required
       />
-      <button onClick={handleRegister}>Register</button>
+      <button className="registerPart" onClick={handleRegister}>
+        Register
+      </button>
       {/* <Modal
         show={showRegisterModal}
         onHide={() => setShowRegisterModal(false)}
