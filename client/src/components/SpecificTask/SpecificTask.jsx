@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router";
+import "./SpecificTask.css";
 export default function SpecificTask() {
   let navigate = useNavigate();
   const [userID] = useState(() => {
@@ -32,21 +33,33 @@ export default function SpecificTask() {
   }, [taskNo, userID]);
 
   return (
-    <div>
-      {taskData?.taskName ? <h1>{taskData.taskName}</h1> : null}
-      {taskData?.taskState ? <h2>{taskData.taskState}</h2> : null}
-      {taskData?.taskDesc ? <p>{taskData.taskDesc}</p> : null}
-      <button
-        onClick={() => {
-          try {
-            navigate(`/profile/${username}`);
-          } catch {
-            navigate("/");
-          }
-        }}
-      >
-        Back
-      </button>
+    <div className="bgDiv">
+      <div className="backgroundDiv">
+        {taskData?.taskName ? (
+          <h1 className={`taskName ${taskData.taskState}State`}>
+            {taskData.taskName}
+          </h1>
+        ) : null}
+        <div className="mainText">
+          {taskData?.taskState ? (
+            <h2 className="taskState">{taskData.taskState}</h2>
+          ) : null}
+          {taskData?.taskDesc ? (
+            <p className="taskDesc">{taskData.taskDesc}</p>
+          ) : null}
+        </div>
+        <button
+          onClick={() => {
+            try {
+              navigate(`/profile/${username}`);
+            } catch {
+              navigate("/");
+            }
+          }}
+        >
+          Back
+        </button>
+      </div>
     </div>
   );
 }
