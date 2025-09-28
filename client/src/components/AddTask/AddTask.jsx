@@ -52,7 +52,13 @@ export default function AddTask() {
     <div>
       <button
         className="backButton"
-        onClick={() => navigate(`/profile/${username}`)}
+        onClick={() => {
+          try {
+            navigate(`/profile/${username}`);
+          } catch {
+            navigate("/");
+          }
+        }}
       >
         Back
       </button>

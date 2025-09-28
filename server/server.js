@@ -46,9 +46,15 @@ app.post("/register", async (req, res) => {
       usernameTaken = true;
     }
   });
+
   if (usernameTaken == false) {
     db.query(`INSERT INTO users (username) VALUES ($1)`, [usernameToTry]);
-    res.json("User registered");
+    res.json(
+      JSON.stringify({
+        username: usernameToTry,
+        userID: data[data.length - 1].id + 1,
+      })
+    );
   } else {
     res.json("Username already taken");
   }
@@ -59,7 +65,7 @@ app.post("/register", async (req, res) => {
 app.post("/add-new-task", async (req, res) => {
   //   try {
   let body = req.body;
-  console.log(body);
+
   let userID = body.newTask.userID;
   let taskName = body.newTask.taskName;
   let taskState = body.newTask.taskState;

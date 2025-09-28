@@ -19,9 +19,12 @@ export default function Register() {
       );
       res = await response.json();
       //   setShowRegisterModal(true);
-      if (res != "User registered") {
+      if (res == "Username already taken") {
         setUsernameToTry("");
-      } else if (res == "User registered") {
+      } else if (res != "Username already taken" && res != undefined) {
+        let parsedData = JSON.parse(res);
+        localStorage.setItem("username", parsedData.username);
+        localStorage.setItem("userID", parsedData.userID);
         navigate(`/profile/${usernameToTry}`);
       }
     }
