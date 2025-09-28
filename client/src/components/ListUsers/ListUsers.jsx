@@ -7,10 +7,11 @@ export default function ListUsers() {
     async function getUsers() {
       let response = await fetch(`${import.meta.env.VITE_SERVER_URL}/users`);
       let data = await response.json();
-      console.log(data);
       setUserList(data);
     }
     getUsers();
+    let userIntervalID = setInterval(getUsers, 2000);
+    return () => clearInterval(userIntervalID);
   }, []);
 
   return (
