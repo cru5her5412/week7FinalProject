@@ -45,7 +45,7 @@ export default function AddTask() {
     res = await response.json();
   }
   return (
-    <>
+    <div>
       <button onClick={() => navigate(`/profile/${username}`)}>Back</button>
       <form onSubmit={submitForm}>
         <h1>Add Task</h1>
@@ -84,6 +84,6 @@ export default function AddTask() {
         <button type="submit">Add task</button>
       </form>
       {res != "" ? <p>{res}</p> : null}
-    </>
+    </div>
   );
 }

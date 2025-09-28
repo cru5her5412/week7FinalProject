@@ -26,7 +26,7 @@ export default function Register() {
     }
   }
   return (
-    <>
+    <div>
       <h1>Register</h1>
       <label htmlFor="usernameToTry">Username</label>
       <input
@@ -42,6 +42,6 @@ export default function Register() {
       >
         {res}
       </Modal> */}
-    </>
+    </div>
   );
 }

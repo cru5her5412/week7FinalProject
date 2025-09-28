@@ -81,4 +81,21 @@ app.post("/profile", async (req, res) => {
   );
   let data = response.rows;
   res.json(data);
-}); //profile pulling from db (hopefully all on same page if not add more get requests)(expects userID)
+}); //profile pulling from db (expects userID)
+app.post("/profile/specific-task", async (req, res) => {
+  let body = req.body;
+  let currUserID = body.userID;
+  let taskNo = body.taskNo;
+  let response = await db.query(
+    `SELECT ARRAY_AGG(tasks.task_name) AS "task_name", ARRAY_AGG(tasks.task_state) AS "task_state", ARRAY_AGG(tasks.task_desc) AS "task_desc" FROM users JOIN tasks ON users.id = tasks.user_id WHERE tasks.user_id=${currUserID} GROUP BY users.id`
+  );
+
+  let data = response.rows;
+  let removeArray = data[0];
+  let taskToSend = {
+    taskName: removeArray.task_name[+taskNo],
+    taskState: removeArray.task_state[+taskNo],
+    taskDesc: removeArray.task_desc[+taskNo],
+  };
+  res.json(taskToSend);
+}); //profile pulling from db (expects userID && taskNo)

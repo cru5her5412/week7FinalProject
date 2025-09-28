@@ -47,16 +47,30 @@ export default function Profile() {
     }
   }
   return (
-    <>
+    <div>
       <h1>Welcome {currUsername}</h1>
       {userData != "" && userData != undefined
-        ? userDataSorted.map((task) =>
-            task.map((data, index) => <p key={`task${index}Name`}>{data}</p>)
-          )
+        ? userDataSorted.map((task, i) => (
+            <div key={`taskNo${i}`} id={`taskNo${i}`}>
+              {task.map((data, index) => (
+                <p key={`task${index}`}>{data}</p>
+              ))}
+            </div>
+          ))
         : null}
+      {/*Takes each task, and puts all its data into individual divs */}
       <button onClick={() => navigate(`/profile/${username}/add-task`)}>
         Add New Task
       </button>
-    </>
+      <button
+        onClick={() => {
+          navigate(`/`);
+          localStorage.setItem("userID", "");
+          localStorage.setItem("username", "");
+        }}
+      >
+        Logout
+      </button>
+    </div>
   );
 }
